@@ -13,13 +13,15 @@ import { MatchListComponent } from './match-list/match-list.component';
 import { MatchService } from './services/match.service';
 import { AppRoutingModule } from './app-routing.module';
 import { DatetimeLocalInputComponent } from './datetime-local-input/datetime-local-input.component';
+import { AuthComponent } from './auth/auth.component';
 
 @NgModule({
     declarations: [
         AppComponent,
         CreateMatchComponent,
         MatchListComponent,
-        DatetimeLocalInputComponent
+        DatetimeLocalInputComponent,
+        AuthComponent
     ],
     imports: [
         BrowserModule,
