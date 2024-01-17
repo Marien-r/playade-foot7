@@ -1,5 +1,5 @@
-<p>match-list works!</p>
-<!-- match-list.component.html -->
+
+<!-- match-list.component.html 
 <div *ngFor="let group of getUniqueGroups()">
   <h2>{{ group }}</h2>
   <ul>
@@ -8,3 +8,19 @@
     </li>
   </ul>
 </div>
+
+-->
+
+<div *ngFor="let group of getUniqueGroups()" class="mb-4">
+  <h3 class="bg-primary text-white p-3 mb-3 rounded">{{ group }}</h3>
+  <ul class="list-group">
+    <li *ngFor="let match of getMatchesByGroup(group)" class="list-group-item mb-2 bg-dark-subtle">
+      <div class="d-flex justify-content-between align-items-center">
+        <span class="fw-bold">{{ match.equipe1 }} vs {{ match.equipe2 }}</span>
+        <span class="badge bg-secondary rounded-pill">{{ formatDate(match.date) }}</span>
+      </div>
+      <div class="text-muted small">{{ match.phase }} - Terrain {{ match.terrain }}</div>
+    </li>
+  </ul>
+</div>
+
