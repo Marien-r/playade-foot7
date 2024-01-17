@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { MatchService } from '../services/match.service';
+import { IMatch } from '../match';
 
 @Component({
   selector: 'app-create-match',
@@ -7,7 +8,14 @@ import { MatchService } from '../services/match.service';
   styleUrl: './create-match.component.scss'
 })
 export class CreateMatchComponent {
-  match: any = {}; // Modèle de match
+  match: IMatch = {
+    phase: '',
+    groupe: '',
+    equipe1: '',
+    equipe2: '',
+    terrain: 0,
+    date: new Date()
+  }; // Modèle de match
 
   constructor(private matchService: MatchService) {}
 

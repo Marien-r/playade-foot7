@@ -11,12 +11,15 @@ import { environment } from '../environments/environment';
 import { CreateMatchComponent } from './create-match/create-match.component';
 import { MatchListComponent } from './match-list/match-list.component';
 import { MatchService } from './services/match.service';
+import { AppRoutingModule } from './app-routing.module';
+import { DatetimeLocalInputComponent } from './datetime-local-input/datetime-local-input.component';
 
 @NgModule({
     declarations: [
         AppComponent,
         CreateMatchComponent,
-        MatchListComponent
+        MatchListComponent,
+        DatetimeLocalInputComponent
     ],
     imports: [
         BrowserModule,
@@ -26,6 +29,7 @@ import { MatchService } from './services/match.service';
         provideFirebaseApp(() => initializeApp(environment.firebase)),
         provideAuth(() => getAuth()),
         provideFirestore(() => getFirestore()),
+        AppRoutingModule,
     ],
     providers: [MatchService],
     bootstrap: [AppComponent]

@@ -1,5 +1,3 @@
-<p>create-match works!</p>
-
 <!-- create-match.component.html -->
 <form (ngSubmit)="createMatch()">
     <div>
@@ -29,7 +27,7 @@
   
     <div>
       <label for="date">Date:</label>
-      <input type="datetime-local" id="date" name="date" [(ngModel)]="match.date" required>
+      <app-datetime-local-input [(ngModel)]="match.date" name="date"></app-datetime-local-input>
     </div>
   
     <button type="submit">Créer Match</button>
