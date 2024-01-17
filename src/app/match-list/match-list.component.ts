@@ -12,6 +12,7 @@ import { DatePipe } from '@angular/common';
 })
 export class MatchListComponent {
   matches: IMatch[] = []; // Mettez le type correct si vous avez défini un modèle Match
+  currentPhase: string = '';
 
   constructor(private matchService: MatchService, private datePipe: DatePipe) { }
 
@@ -19,16 +20,33 @@ export class MatchListComponent {
     // Chargez les matchs depuis le service
     this.matchService.getMatches().subscribe(matches => {
       this.matches = matches;
+
+      // Récupère la phase la plus récente
+      this.currentPhase = this.getUniquePhases().sort().reverse()[0];
     });
   }
 
-  getMatchesByGroup(group: string): any[] {
-    // Filtrer les matchs par groupe
-    return this.matches.filter(match => match.groupe === group);
+  updateCurrentPhase(phase: string) {
+    this.currentPhase = phase;
   }
 
-  getUniqueGroups(): string[] {
-    return Array.from(new Set(this.matches.map(match => match.groupe)));
+  getMatchesByPhaseAndGroup(phase: string, group: string): any[] {
+    // Filtrer les matchs par groupe et phase
+    return this.matches.filter(
+      match => match.groupe === group
+        && match.phase === phase);
+  }
+
+  getUniqueGroups(phase: string): string[] {
+    return Array.from(
+      new Set(
+        this.matches.filter(match => match.phase == phase).
+          map(match => match.groupe)
+      ));
+  }
+
+  getUniquePhases(): string[] {
+    return Array.from(new Set(this.matches.map(match => match.phase)));
   }
 
   formatDate(date: Date): string {
