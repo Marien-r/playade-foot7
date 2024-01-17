@@ -1,0 +1,15 @@
+{
+  "projects": {
+    "default": "playade-foot7"
+  },
+  "targets": {
+    "playade-foot7": {
+      "hosting": {
+        "playade-foot7": [
+          "playade-foot7"
+        ]
+      }
+    }
+  },
+  "etags": {}
+}

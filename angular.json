@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "playade_foot7": {
+    "playade-foot7": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/playade_foot7",
+            "outputPath": "dist/playade-foot7",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -62,10 +62,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "playade_foot7:build:production"
+              "buildTarget": "playade-foot7:build:production"
             },
             "development": {
-              "buildTarget": "playade_foot7:build:development"
+              "buildTarget": "playade-foot7:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -73,7 +73,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "buildTarget": "playade_foot7:build"
+            "buildTarget": "playade-foot7:build"
           }
         },
         "test": {
@@ -94,6 +94,23 @@
             ],
             "scripts": []
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "version": 2
+          },
+          "configurations": {
+            "production": {
+              "buildTarget": "playade-foot7:build:production",
+              "serveTarget": "playade-foot7:serve:production"
+            },
+            "development": {
+              "buildTarget": "playade-foot7:build:development",
+              "serveTarget": "playade-foot7:serve:development"
+            }
+          },
+          "defaultConfiguration": "production"
         }
       }
     }

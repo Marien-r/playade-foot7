@@ -1,0 +1,27 @@
+{
+  "firestore": {
+    "rules": "firestore.rules",
+    "indexes": "firestore.indexes.json"
+  },
+  "hosting": [
+    {
+      "public": "dist/playade-foot7/browser",
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
+      ],
+      "rewrites": [
+        {
+          "source": "**",
+          "destination": "/index.html"
+        }
+      ]
+    },
+    {
+      "target": "playade-foot7",
+      "source": ".",
+      "frameworksBackend": {}
+    }
+  ]
+}
