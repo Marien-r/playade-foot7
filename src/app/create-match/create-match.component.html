@@ -1,35 +1,57 @@
-<!-- create-match.component.html -->
-<form (ngSubmit)="createMatch()">
-    <div>
-      <label for="phase">Phase:</label>
-      <input type="text" id="phase" name="phase" [(ngModel)]="match.phase" required>
+<!-- Affiche le message si le match est créé avec succès -->
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <div class="alert alert-success" [ngClass]="{'invisible': displayMessage=== ''}" role="alert">
+                {{ displayMessage }}&nbsp; <!-- &nbsp; = permet d'éviter d'avoir un décalage lorsque le message est caché-->
+            </div>
+        </div>
     </div>
-  
-    <div>
-      <label for="groupe">Groupe:</label>
-      <input type="text" id="groupe" name="groupe" [(ngModel)]="match.groupe" required>
+    <div class="row">
+        <div class="col">
+            <form class="mb-4" (ngSubmit)="createMatch()">
+                <div class="mb-3">
+                    <label for="phase" class="form-label">Phase:</label>
+                    <select id="phase" name="phase" [(ngModel)]="match.phase" (change)="updateGroupeOptions()"
+                        class="form-select form-select-sm" required>
+                        <option *ngFor="let option of phases" [value]="option.value">{{ option.viewValue }}</option>
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label for="groupe" class="form-label">Groupe:</label>
+                    <select id="groupe" name="groupe" [(ngModel)]="match.groupe" class="form-select form-select-sm"
+                        required>
+                        <option *ngFor="let option of groupeOptions" [value]="option">{{ option }}</option>
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label for="terrain" class="form-label">Terrain:</label>
+                    <input type="number" id="terrain" name="terrain" [(ngModel)]="match.terrain"
+                        class="form-control form-control-sm" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="equipe1" class="form-label">Équipe 1:</label>
+                    <input type="text" id="equipe1" name="equipe1" [(ngModel)]="match.equipe1"
+                        class="form-control form-control-sm" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="equipe2" class="form-label">Équipe 2:</label>
+                    <input type="text" id="equipe2" name="equipe2" [(ngModel)]="match.equipe2"
+                        class="form-control form-control-sm" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="date" class="form-label">Date:</label>
+                    <app-datetime-local-input [(ngModel)]="match.date" name="date"
+                        class="form-control form-control-sm"></app-datetime-local-input>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-sm">Créer Match</button>
+            </form>
+        </div>
     </div>
-  
-    <div>
-      <label for="terrain">Terrain:</label>
-      <input type="number" id="terrain" name="terrain" [(ngModel)]="match.terrain" required>
-    </div>
-  
-    <div>
-      <label for="equipe1">Équipe 1:</label>
-      <input type="text" id="equipe1" name="equipe1" [(ngModel)]="match.equipe1" required>
-    </div>
-  
-    <div>
-      <label for="equipe2">Équipe 2:</label>
-      <input type="text" id="equipe2" name="equipe2" [(ngModel)]="match.equipe2" required>
-    </div>
-  
-    <div>
-      <label for="date">Date:</label>
-      <app-datetime-local-input [(ngModel)]="match.date" name="date"></app-datetime-local-input>
-    </div>
-  
-    <button type="submit">Créer Match</button>
-  </form>
-  
+</div>

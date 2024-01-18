@@ -35,7 +35,7 @@ export class MatchListComponent {
       this.matches = matches;
 
       // Récupère la phase la plus récente
-      this.currentPhase = this.getUniquePhases().sort().reverse()[0];
+      this.currentPhase = this.getUniquePhases().reverse()[0];
     });
   }
 
@@ -70,10 +70,10 @@ export class MatchListComponent {
   }
 
   getMatchesByPhaseAndGroup(phase: string, group: string): any[] {
-    // Filtrer les matchs par groupe et phase
-    return this.matches.filter(
-      match => match.groupe === group
-        && match.phase === phase);
+    // Filtrer les matchs par groupe et phase triés par date
+    return this.matches.filter(match => match.phase == phase 
+      && match.groupe == group).
+      sort((a, b) => a.date.getTime() - b.date.getTime());
   }
 
   getUniqueGroups(phase: string): string[] {
@@ -81,11 +81,11 @@ export class MatchListComponent {
       new Set(
         this.matches.filter(match => match.phase == phase).
           map(match => match.groupe)
-      ));
+      )).sort();
   }
 
   getUniquePhases(): string[] {
-    return Array.from(new Set(this.matches.map(match => match.phase)));
+    return Array.from(new Set(this.matches.map(match => match.phase))).sort();
   }
 
   formatDate(date: Date): string {
