@@ -8,9 +8,16 @@ import { IMatch } from '../match';
   providedIn: 'root'
 })
 export class MatchService {
+
   private matchCollection = 'matchs';
 
   constructor(private firestore: Firestore) {}
+
+  deleteMatch(matchId: string) {
+    // supprime un match
+    const ref = doc(this.firestore, this.matchCollection, matchId);
+    return deleteDoc(ref);
+  }
 
   addMatch(match: any): Promise<any> {
     // Créer une copie de l'objet pour éviter de modifier l'original
