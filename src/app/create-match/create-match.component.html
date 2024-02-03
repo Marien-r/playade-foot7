@@ -9,18 +9,18 @@
     </div>
     <div class="row">
         <div class="col">
-            <form class="mb-4" (ngSubmit)="createMatch()">
+            <form class="mb-4" [formGroup]="matchForm" (ngSubmit)="createMatch()">
                 <div class="mb-3">
                     <label for="phase" class="form-label">Phase:</label>
-                    <select id="phase" name="phase" [(ngModel)]="match.phase" (change)="updateGroupeOptions()"
+                    <select id="phase" formControlName="phase"
                         class="form-select form-select-sm" required>
-                        <option *ngFor="let option of phases" [value]="option.value">{{ option.viewValue }}</option>
+                        <option *ngFor="let option of phases" [value]="option">{{ option }}</option>
                     </select>
                 </div>
 
                 <div class="mb-3">
                     <label for="groupe" class="form-label">Groupe:</label>
-                    <select id="groupe" name="groupe" [(ngModel)]="match.groupe" class="form-select form-select-sm"
+                    <select id="groupe" formControlName="groupe" class="form-select form-select-sm"
                         required>
                         <option *ngFor="let option of groupeOptions" [value]="option">{{ option }}</option>
                     </select>
@@ -28,25 +28,25 @@
 
                 <div class="mb-3">
                     <label for="terrain" class="form-label">Terrain:</label>
-                    <input type="number" id="terrain" name="terrain" [(ngModel)]="match.terrain"
+                    <input type="number" id="terrain" formControlName="terrain"
                         class="form-control form-control-sm" required>
                 </div>
 
                 <div class="mb-3">
                     <label for="equipe1" class="form-label">Équipe 1:</label>
-                    <input type="text" id="equipe1" name="equipe1" [(ngModel)]="match.equipe1"
+                    <input type="text" id="equipe1" formControlName="equipe1"
                         class="form-control form-control-sm" required>
                 </div>
 
                 <div class="mb-3">
                     <label for="equipe2" class="form-label">Équipe 2:</label>
-                    <input type="text" id="equipe2" name="equipe2" [(ngModel)]="match.equipe2"
+                    <input type="text" id="equipe2" formControlName="equipe2"
                         class="form-control form-control-sm" required>
                 </div>
 
                 <div class="mb-3">
                     <label for="date" class="form-label">Date:</label>
-                    <app-datetime-local-input [(ngModel)]="match.date" name="date"
+                    <app-datetime-local-input formControlName="date"
                         class="form-control form-control-sm"></app-datetime-local-input>
                 </div>
 
@@ -55,3 +55,5 @@
         </div>
     </div>
 </div>
+<p>Form Status: {{ matchForm.status }}</p>
+<p>Form Status: {{ matchForm.value | json }}</p>

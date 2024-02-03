@@ -8,7 +8,6 @@ import { IMatch } from '../match';
   providedIn: 'root'
 })
 export class MatchService {
-
   private matchCollection = 'matchs';
 
   constructor(private firestore: Firestore) {}
